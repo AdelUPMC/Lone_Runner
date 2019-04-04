@@ -1,6 +1,9 @@
 package services;
 
-public interface Environnement extends ScreenService{
+public interface EnvironnementService extends ScreenService{
+	
+	
+		//cellContent
 	
 		/**
 		 * 
@@ -17,7 +20,9 @@ public interface Environnement extends ScreenService{
 					}
 			\inv: \forall x in [0;getWidth()[ 
 					\forall y in [0;getHeight()[
-						if()
+						if(cellContent(x,y))==ItemType.Treasure){
+							getCellNature(x,y)== EMP && getCellNature(x,y-1) in [PLT, MTL];
+						}
 					
 		 */
 	
