@@ -1,9 +1,14 @@
 package services;
 
+import impl.Collection_Set;
+
 public interface EnvironnementService extends ScreenService{
 	
-	
-		//cellContent
+		/**
+		 *  pre : 0<=y<=getHeight() && 0<=x<=getWidth() 
+		 * 
+		 */
+		public Collection_Set getCellContent(int x, int y);
 	
 		/**
 		 * 
@@ -20,8 +25,8 @@ public interface EnvironnementService extends ScreenService{
 					}
 			\inv: \forall x in [0;getWidth()[ 
 					\forall y in [0;getHeight()[
-						if(cellContent(x,y))==ItemType.Treasure){
-							getCellNature(x,y)== EMP && getCellNature(x,y-1) in [PLT, MTL];
+						if(cellContent(x,y)) ==ItemType.Treasure){
+							getCellNature(x,y) == EMP && getCellNature(x,y-1) in [PLT, MTL];
 						}
 					
 		 */
