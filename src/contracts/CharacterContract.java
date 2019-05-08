@@ -99,6 +99,7 @@ public class CharacterContract extends CharacterDecorator {
 			  					 	 
 	}
 	
+	
 	public void goRight() throws InvariantError, PreConditionError, PostConditionError {
 		//pre inv
 				this.checkInvariant();

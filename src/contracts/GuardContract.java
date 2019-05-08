@@ -366,7 +366,7 @@ public class GuardContract extends GuardDecorator{
 		super.goUp();
 	}
 
-	public void goDown() {
+	public void goDown() throws InvariantError, PreConditionError, PostConditionError {
 		super.goDown();
 	}
 
