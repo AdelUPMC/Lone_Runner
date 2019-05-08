@@ -40,6 +40,12 @@ public class Screen implements ScreenService {
 	public void init(int h, int w) throws PostConditionError, PreConditionError {
 		this.width=w;
 		this.height=h;
+		for(int x=0;x<w;x++) {
+			for(int y=0;y<h;y++) {
+				Pair<Integer, Integer> p= new Pair<Integer, Integer>(x,y);
+				getScreen().put(p, CellNature.EMP);
+			}
+		}
 	}
 
 	@Override
