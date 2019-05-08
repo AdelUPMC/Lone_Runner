@@ -15,8 +15,8 @@ public abstract class CharacterDecorator implements CharacterService {
 		this.delegate = delegate;
 	}
 
-	public int getHeigth() {
-		return delegate.getHeigth();
+	public int getHeight() {
+		return delegate.getHeight();
 	}
 
 	public int getWidth() {
@@ -35,15 +35,15 @@ public abstract class CharacterDecorator implements CharacterService {
 		delegate.goLeft();
 	}
 
-	public void goRight() {
+	public void goRight() throws InvariantError, PreConditionError, PostConditionError {
 		delegate.goRight();
 	}
 
-	public void goUp() {
+	public void goUp() throws InvariantError, PreConditionError, PostConditionError {
 		delegate.goUp();
 	}
 
-	public void goDown() {
+	public void goDown() throws InvariantError, PreConditionError, PostConditionError {
 		delegate.goDown();
 	}
 	

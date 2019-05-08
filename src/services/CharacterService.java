@@ -6,7 +6,7 @@ import Exceptions.PreConditionError;
 
 public interface CharacterService {
 	
-	public int getHeigth();
+	public int getHeight();
 	public int getWidth();
 	public EnvironnementService getEnv();
 
@@ -87,7 +87,7 @@ public interface CharacterService {
 	
 	/**
 	 * \post : getHeight() == getHeight()@pre
-	 * \post : if(getWidth()@pre == 0) {
+	 * \post : if(getWidth()@pre == getEnv().getWidth()) {
 	 *  			getWidth() == getWidth()@pre }
 	 *  
 	 *  \post : if((getEnv().getCellNature(getWidth()+1, getHeigth()) ==CellNature.MTL) || 
@@ -125,60 +125,62 @@ public interface CharacterService {
 	 *			{
 	 *				getWidth() == getWidth()@pre +1;
 	 *			}
+	 * @throws PreConditionError 
+	 * @throws InvariantError 
+	 * @throws PostConditionError 
 	 *			
 	 */
-	public void goRight();
+	public void goRight() throws InvariantError, PreConditionError, PostConditionError;
 	
 	
 	/**
-	 * \post : getWidth() == getWidth()@pre
-	 * \post : if(getHeigth()@pre == getEnv().getHeigth()) 
-	 *  			getHeigth() == getHeigth()()@pre 
-	 *  
-	 *  \post : if((getEnv().getCellNature(getWidth(), getHeigth()+1) ==CellNature.MTL) || 
-	 *  		 (getEnv().getCellNature(getWidth()+1, getHeigth()+1) == CellNature.PLT)) {
-	 *  			getHeigth() == getHeigth()()@pre 
-	 *  		}
-	 *  
-	 *  \post : if(getEnv().getCellContent(getWidth(), getHeight()+1).getCharacters.size()>0)
-	 *  			getWidth() == getWidth()@pre;
-	 *  
-	 *	\post : if(	(getHeight() != getEnv().getHeight())
-	 *
-	 *				&& ((getEnv().getCellNature(getWidth(), getHeight()+1) != CellNature.MTL
-	 *				|| getEnv().getCellNature(getWidth(), getHeight()+1) != CellNature.PLT))
-	 *
-	 *				&& ((getEnv().getCellNature(getWidth(), getHeight()) == CellNature.LAD)
-	 *				&& (getEnv().getCellNature(getWidth(), getHeight()+1) == CellNature.LAD))
-	 *					
-	 *
-	 *				&& (getEnv().getCellContent(getWidth(), getHeight()+1).getCharacters.size()==0))
-	 *			{
-	 *				getHeight() == getHeight()@pre+1;
-	 *			}
-	 *			
-	 */
-	
-	
-	public void goUp();
-	
-	
-	/**
-	 * \post : getWidth() == getWidth()@pre
+	 * \post1 : getWidth() == getWidth()@pre
 	 * 
-	 * \post : if(getHeigth()@pre == 0 ) {
+	 * \post2 : if(getHeigth()@pre == getEnv().getHeight()) {
 	 *  			getHeigth() == getHeigth()@pre }
 	 *  
-	 *  \post : if(getEnv().getCellNature(getWidth(), getHeigth()-1) == CellNature.PLT 
+	 *  \post3 : if(getEnv().getCellNature(getWidth(), getHeigth()-1) == CellNature.PLT 
 	 *  		|| (getEnv().getCellNature(getWidth(), getHeigth()-1) == CellNature.PLT) ) {
 	 *  			getHeight() == getHeight()@pre;
 	 *  		}
 	 *  
-	 *  \post : if(\exists C Character \in getEnv().getCellContent(getWidth() , getHeight()-1)){
+	 *  \post3 : if(\exists C Character \in getEnv().getCellContent(getWidth() , getHeight()-1)){
 	 *  				getHeight() == getHeight()@pre;
 	 *  		} 
 	 *  
-	 *  \post : if( (getHeight() != 0)
+	 *  \post4 : if( (getHeight() != getEnv().getHeight())
+	 *  				&& ((getEnv().getCellNature(getWidth(), getHeight()+1) != CellNature.MTL)
+	 *					|| (getEnv().getCellNature(getWidth(), getHeight()+1) != CellNature.PLT))
+     *					&& ((getEnv().getCellNature(getWidth(), getHeight()) == CellNature.LAD)
+	 *				&& (getEnv().getCellNature(getWidth(), getHeight()+1) == CellNature.LAD))
+	 *				&& (getEnv().getCellContent(getWidth(), getHeight()+1).getCharacters.size()==0)) {
+	 *						getHeight() == getHeight()@pre+1;
+	 *				}
+	 *  
+	 *  
+	 *  
+	 */
+	
+	
+	public void goUp() throws InvariantError, PreConditionError, PostConditionError;
+	
+	
+	/**
+	 * \post1 : getWidth() == getWidth()@pre
+	 * 
+	 * \post2 : if(getHeigth()@pre == 0 ) {
+	 *  			getHeigth() == getHeigth()@pre }
+	 *  
+	 *  \post3 : if(getEnv().getCellNature(getWidth(), getHeigth()-1) == CellNature.PLT 
+	 *  		|| (getEnv().getCellNature(getWidth(), getHeigth()-1) == CellNature.PLT) ) {
+	 *  			getHeight() == getHeight()@pre;
+	 *  		}
+	 *  
+	 *  \post3 : if(getEnv().getCellContent(getWidth(), getHeight()-1).getCharacters.size()>0)){
+	 *  				getHeight() == getHeight_atPre;
+	 *  		} 
+	 *  
+	 *  \post4 : if( (getHeight() != 0)
  *  				&& ((getEnv().getCellNature(getWidth(), getHeight()-1) != CellNature.MTL)
  *					|| (getEnv().getCellNature(getWidth(), getHeight()-1) != CellNature.PLT))
  *					&& ((getEnv().getCellNature(getWidth(), getHeight()) == CellNature.LAD)
@@ -186,11 +188,14 @@ public interface CharacterService {
 	 *				&& (getEnv().getCellContent(getWidth(), getHeight()-1).getCharacters.size()==0)) {
 	 *						getHeight() == getHeight()@pre-1;
 	 *				}
+	 * @throws PreConditionError 
+	 * @throws InvariantError 
+	 * @throws PostConditionError 
 	 *  
 	 *  
 	 *  
 	 */
-	public void goDown();
+	public void goDown() throws InvariantError, PreConditionError, PostConditionError;
 	
 	
 }

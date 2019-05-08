@@ -18,7 +18,7 @@ public abstract class GuardDecorator implements GuardService {
 	}
 
 	public int getHeight() {
-		return delegate.getHeigth();
+		return delegate.getHeight();
 	}
 
 	public int getId() {
@@ -57,11 +57,11 @@ public abstract class GuardDecorator implements GuardService {
 		delegate.goLeft();
 	}
 
-	public void goRight() {
+	public void goRight() throws InvariantError, PreConditionError, PostConditionError {
 		delegate.goRight();
 	}
 
-	public void goUp() {
+	public void goUp() throws InvariantError, PreConditionError, PostConditionError {
 		delegate.goUp();
 	}
 
@@ -69,7 +69,7 @@ public abstract class GuardDecorator implements GuardService {
 		delegate.ClimbRight();
 	}
 
-	public void goDown() {
+	public void goDown() throws InvariantError, PreConditionError, PostConditionError {
 		delegate.goDown();
 	}
 

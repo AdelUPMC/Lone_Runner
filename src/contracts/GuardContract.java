@@ -27,11 +27,11 @@ public class GuardContract extends GuardDecorator{
 	 			getBehaviour() == Move.Up; */
 		try {
 			if((getEnv().getCellNature(getWidth(), getHeight())== CellNature.LAD)
-				&& getHeight() < getTarget().getHeigth()
+				&& getHeight() < getTarget().getHeight()
 				&& (getEnv().getCellNature(getWidth(), getHeight()-1) != CellNature.MTL
 					|| getEnv().getCellNature(getWidth(), getHeight()-1) != CellNature.PLT
 					|| getEnv().getCellContent(getWidth() , getHeight()-1).getCharacters().size()>0)
-				&& Math.abs(getTarget().getHeigth() - getHeight()) < Math.abs(getTarget().getWidth()-getWidth())) {
+				&& Math.abs(getTarget().getHeight() - getHeight()) < Math.abs(getTarget().getWidth()-getWidth())) {
 				if(getBehaviour()!=Move.Up)
 					throw new InvariantError("Le guarde prend le mauvais chemin");
 			}
@@ -49,11 +49,11 @@ public class GuardContract extends GuardDecorator{
 		 			getBehaviour() == Move.Down;*/
 		try {
 			if((getEnv().getCellNature(getWidth(), getHeight())== CellNature.LAD)
-					&& getHeight() > getTarget().getHeigth()
+					&& getHeight() > getTarget().getHeight()
 					&& (getEnv().getCellNature(getWidth(), getHeight()-1) != CellNature.MTL
 						|| getEnv().getCellNature(getWidth(), getHeight()-1) != CellNature.PLT
 						|| getEnv().getCellContent(getWidth() , getHeight()-1).getCharacters().size()>0)
-					&& Math.abs(getTarget().getHeigth() - getHeight()) < Math.abs(getTarget().getWidth()-getWidth())) {
+					&& Math.abs(getTarget().getHeight() - getHeight()) < Math.abs(getTarget().getWidth()-getWidth())) {
 					if(getBehaviour()!=Move.Down)
 						throw new InvariantError("Le guarde prend le mauvais chemin");
 				}
@@ -84,7 +84,7 @@ public class GuardContract extends GuardDecorator{
 					|| (getEnv().getCellNature(getWidth(), getHeight()-1) == CellNature.HOL 
 						&& (getEnv().getCellContent(getWidth() , getHeight()-1).getCharacters().size()>0))
 					&& getWidth() > getTarget().getWidth()
-					&& Math.abs(getTarget().getHeigth()-getHeight()) > Math.abs(getTarget().getWidth()-getWidth())) {
+					&& Math.abs(getTarget().getHeight()-getHeight()) > Math.abs(getTarget().getWidth()-getWidth())) {
 						if(getBehaviour()!=Move.Left)
 							throw new InvariantError("Le guarde prend le mauvais chemin");
 			}
@@ -115,7 +115,7 @@ public class GuardContract extends GuardDecorator{
 					|| (getEnv().getCellNature(getWidth(), getHeight()-1) == CellNature.HOL 
 						&& (getEnv().getCellContent(getWidth() , getHeight()-1).getCharacters().size()>0))
 					&& getWidth() < getTarget().getWidth()
-					&& Math.abs(getTarget().getHeigth()-getHeight()) > Math.abs(getTarget().getWidth()-getWidth())) {
+					&& Math.abs(getTarget().getHeight()-getHeight()) > Math.abs(getTarget().getWidth()-getWidth())) {
 						if(getBehaviour()!=Move.Right)
 							throw new InvariantError("Le guarde prend le mauvais chemin");
 			}
@@ -146,7 +146,7 @@ public class GuardContract extends GuardDecorator{
 					|| (getEnv().getCellNature(getWidth(), getHeight()-1) == CellNature.HOL 
 						&& (getEnv().getCellContent(getWidth() , getHeight()-1).getCharacters().size()>0))
 					&& getWidth() == getTarget().getWidth()
-					&& Math.abs(getTarget().getHeigth()-getHeight()) > Math.abs(getTarget().getWidth()-getWidth())) {
+					&& Math.abs(getTarget().getHeight()-getHeight()) > Math.abs(getTarget().getWidth()-getWidth())) {
 						if(getBehaviour()!=Move.Neutral)
 							throw new InvariantError("Le guarde prend le mauvais chemin");
 			}
@@ -355,11 +355,11 @@ public class GuardContract extends GuardDecorator{
 		}
 	}
 
-	public void goRight() {
+	public void goRight() throws InvariantError, PreConditionError, PostConditionError {
 		super.goRight();
 	}
 
-	public void goUp() {
+	public void goUp() throws InvariantError, PreConditionError, PostConditionError {
 		super.goUp();
 	}
 
@@ -371,11 +371,7 @@ public class GuardContract extends GuardDecorator{
 		super.Step();
 	}
 
-	@Override
-	public int getHeigth() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 	
 	
 
