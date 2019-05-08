@@ -1,5 +1,9 @@
 package services;
 
+import Exceptions.InvariantError;
+import Exceptions.PostConditionError;
+import Exceptions.PreConditionError;
+
 public interface GuardService extends CharacterService{
 	
 	public int getId();
@@ -85,9 +89,12 @@ public interface GuardService extends CharacterService{
 	 * 									&& !(\exists C Character \in getEnv().getCellContent(getWidth()@pre -1 , getHeight()@pre+1) {
 	 * 				getWidth() == getWidth()@pre-1;
 	 * 				getHeight() == getHeight@pre+1;
+	 * @throws PreConditionError 
+	 * @throws PostConditionError 
+	 * @throws InvariantError 
 	 * 
 	 */
-	public void ClimbLeft();
+	public void ClimbLeft() throws PreConditionError, PostConditionError, InvariantError;
 	
 	/**
 	 * \pre : getEnv().getCellNature(getWidth(), getHeight()) == CellNature.HOL
@@ -109,9 +116,12 @@ public interface GuardService extends CharacterService{
 	 * 									&& !(\exists C Character \in getEnv().getCellContent(getWidth()@pre +1 , getHeight()@pre+1) {
 	 * 				getWidth() == getWidth()@pre+1;
 	 * 				getHeight() == getHeight@pre+1;
+	 * @throws InvariantError 
+	 * @throws PreConditionError 
+	 * @throws PostConditionError 
 	 * 
 	 */
-	public void ClimbRight();
+	public void ClimbRight() throws PreConditionError, InvariantError, PostConditionError;
 	
 	public void Step();
 	

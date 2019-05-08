@@ -1,8 +1,12 @@
 package contracts;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import Exceptions.PostConditionError;
 import Exceptions.PreConditionError;
 import decorators.ScreenDecorator;
+import javafx.util.Pair;
 import services.CellNature;
 import services.ScreenService;
 
@@ -55,17 +59,19 @@ public class ScreenContract extends ScreenDecorator {
 	
 	
 	public void dig(int x, int y) throws PostConditionError, PreConditionError {
-		ScreenService atPre = null;
-		try {
-			atPre = (ScreenService) super.clone();
-		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		//pre: getCellNature(x,y) = CellNature.PLT
 		if(getCellNature(x, y) != CellNature.PLT)
 			throw new PreConditionError("La cible de \"dig\" n'est pas une plateforme");
 		
+		
+		
+		//capture
+		Map<Pair<Integer,Integer>,CellNature> cellnatures_atPre= new HashMap<>();
+		for(int u=0;x<this.getWidth();u++) {
+			for(int v=0;v<this.getHeight();v++) {
+				cellnatures_atPre.put(new Pair<Integer, Integer>(u,v),getCellNature(u,v));
+			}
+		}
 		super.dig(x, y);
 		
 		//post : getCellNature(x,y) = CellNature.HOL
@@ -76,28 +82,28 @@ public class ScreenContract extends ScreenDecorator {
 		            forall(v) in [0;getHeight()[, 
 		               if(x!= u || y != v) 
 		                   getCellNature(u,v) = getCellNature(u,v)@pre */
-		for(int i = 0; i<getWidth(); i++) {
-			for(int j = 0; j<getHeight(); j++) {
-				if(x != i || y != j) {
-					if(getCellNature(x, y) != atPre.getCellNature(x, y))
-						throw new PostConditionError("Des cases autres que la cases cibles ont été modifiés");
-				}
+		//post
+		for(int u=0;x<this.getWidth();u++) {
+			for(int v=0;v<this.getHeight();v++) {
+				if(x!= u || y != v)
+					if(getCellNature(u,v) != cellnatures_atPre.get(new Pair<Integer, Integer>(u,v))) throw new PostConditionError("setNature post:getCellNature(u,v) != cellnatures_atPre(u,v)");
 			}
 		}
 	}
 
 
 		public void fill(int x, int y) throws PostConditionError, PreConditionError {
-			ScreenService atPre = null;
-			try {
-				atPre = (ScreenService) super.clone();
-			} catch (CloneNotSupportedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			//pre: getCellNature(x,y) = CellNature.HOL
 			if(getCellNature(x, y) != CellNature.HOL)
 				throw new PreConditionError("La cible de \"fill\" n'est pas un trou");
+			//capture
+			Map<Pair<Integer,Integer>,CellNature> cellnatures_atPre= new HashMap<>();
+			for(int u=0;x<this.getWidth();u++) {
+				for(int v=0;v<this.getHeight();v++) {
+					cellnatures_atPre.put(new Pair<Integer, Integer>(u,v),getCellNature(u,v));
+				}
+			}
 			
 			super.fill(x, y);
 			
@@ -109,12 +115,11 @@ public class ScreenContract extends ScreenDecorator {
 			            forall(v) in [0;getHeight()[, 
 			               if(x!= u || y != v) 
 			                   getCellNature(u,v) = getCellNature(u,v)@pre */
-			for(int i = 0; i<getWidth(); i++) {
-				for(int j = 0; j<getHeight(); j++) {
-					if(x != i || y != j) {
-						if(getCellNature(x, y) != atPre.getCellNature(x, y))
-							throw new PostConditionError("Des cases autres que la cases cibles ont été modifiés");
-					}
+			//post
+			for(int u=0;x<this.getWidth();u++) {
+				for(int v=0;v<this.getHeight();v++) {
+					if(x!= u || y != v)
+						if(getCellNature(u,v) != cellnatures_atPre.get(new Pair<Integer, Integer>(u,v))) throw new PostConditionError("setNature post:getCellNature(u,v) != cellnatures_atPre(u,v)");
 				}
 			}
 		}

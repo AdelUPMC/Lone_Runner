@@ -49,7 +49,7 @@ public abstract class GuardDecorator implements GuardService {
 		return delegate.getTimeInHole();
 	}
 
-	public void ClimbLeft() {
+	public void ClimbLeft() throws PreConditionError, PostConditionError, InvariantError {
 		delegate.ClimbLeft();
 	}
 
@@ -65,7 +65,7 @@ public abstract class GuardDecorator implements GuardService {
 		delegate.goUp();
 	}
 
-	public void ClimbRight() {
+	public void ClimbRight() throws PreConditionError, InvariantError, PostConditionError {
 		delegate.ClimbRight();
 	}
 

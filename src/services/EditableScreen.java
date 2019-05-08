@@ -1,5 +1,9 @@
 package services;
 
+import Exceptions.InvariantError;
+import Exceptions.PostConditionError;
+import Exceptions.PreConditionError;
+
 public interface EditableScreen extends ScreenService{
 	
 	public boolean isPlayable();
@@ -14,8 +18,11 @@ public interface EditableScreen extends ScreenService{
 	* 			forall(v) in [0;getHeight()[
 	* 				if(x!= u || y != v)
 	* 					getCellNature(u,v) = getCellNature(u,v)@pre
+	 * @throws InvariantError 
+	 * @throws PreConditionError 
+	 * @throws PostConditionError 
 	 */
-	public void setNature(int x, int y, CellNature c);
+	public void setNature(int x, int y, CellNature c) throws InvariantError, PreConditionError, PostConditionError;
 	
 	/**
 	 *  \inv:  isPlayable()==
