@@ -7,9 +7,9 @@ public interface CharacterService {
 	public EnvironnementService getEnv();
 
 	/**
-	 * \pre : getEnv.getCellNature(hgt, wdt) == CellNature.Emp
+	 * \pre : getEnv().getCellNature(x,y) == CellNature.Emp
 	 */
-	public void init(int hgt, int wdt);
+	public void init(ScreenService s,int x, int y);
 	
 	/**
 	 * \post : getHeight() == getHeight()@pre

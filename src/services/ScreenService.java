@@ -17,13 +17,13 @@ public interface ScreenService {
 	* post : getWidth() = w
 	* post : forall(x) in [0;getWidth()[
 	* 			 forall(y) in [0;getHeight()[
-	* 				getCellNature(x,y) = EMP
+	* 				getCellNature(x,y) = CellNature.EMP
 	 */
 	public void init(int h, int w);
 	
 	/**
-	* pre: getCellNature(x,y) = PLT
-	* post : getCellNature(x,y) = HOL
+	* pre: getCellNature(x,y) = CellNature.PLT
+	* post : getCellNature(x,y) = CellNature.HOL
 	* post : forall(x) in [0; getWidth()[ 
 	* 			forall(y) in [0;getHeight()[, 
 	* 				if(x!= u || y != v) 
@@ -32,8 +32,8 @@ public interface ScreenService {
 	public void dig(int x, int y);
 	
 	/**
-	* pre: getCellNature(x,y) = PLT
-	* post : getCellNature(x,y) = HOL
+	* pre: getCellNature(x,y) = CellNature.PLT
+	* post : getCellNature(x,y) = CellNature.HOL
 	* post : forall(u) in [0; getWidth()[ 
 	* 			forall(v) in [0;getHeight()[, 
 						if(x!= u || y != v) 

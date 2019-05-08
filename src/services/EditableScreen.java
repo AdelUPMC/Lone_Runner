@@ -21,8 +21,8 @@ public interface EditableScreen extends ScreenService{
 	 *  \inv:  isPlayable()==true
 	 * 	\inv:forall(x) in [0; getWidth()[ 
 	 * 			forall(y) in [0;getHeight()[
-	 * 				getCellNature(x,y)!=HOL
+	 * 				getCellNature(x,y)!=CellNature.HOL
 	 * \inv:forall(x) in [0; getWidth()[
-	 * 	 	getCellNature(x,0)=MTL
+	 * 	 	getCellNature(x,0)=CellNature.MTL
 	 */
 }
