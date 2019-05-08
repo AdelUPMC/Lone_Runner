@@ -1,5 +1,7 @@
 package contracts;
 
+import Exceptions.PostConditionError;
+import Exceptions.PreConditionError;
 import decorators.ScreenDecorator;
 import services.CellNature;
 import services.ScreenService;
@@ -22,22 +24,22 @@ public class ScreenContract extends ScreenDecorator {
 		return super.getWidth();
 	}
 
-	public void init(int h, int w) {
+	public void init(int h, int w) throws PostConditionError, PreConditionError {
 		//pre: h > 0
 		//pre: w > 0
 		if(h<0) {
-			throw new PreconditionError("Hauteur négative à l'initialisation");
+			throw new PreConditionError("Hauteur négative à l'initialisation");
 		}
 		if(w<0) {
-			throw new PreconditionError("Largeur négative à l'initialisation");
+			throw new PreConditionError("Largeur négative à l'initialisation");
 		}
 		super.init(h, w);
 		//post : getHeight() = h
 		if(getHeight() != h)
-			throw new PostconditionError("La hauteur n'a pas été correctement initialisée");
+			throw new PostConditionError("La hauteur n'a pas été correctement initialisée");
 		//post : getWidth() = w
 		if(getWidth() != w)
-			throw new PostconditionError("La largeur n'a pas été correctement initialisée");
+			throw new PostConditionError("La largeur n'a pas été correctement initialisée");
 		
 		/*post : forall(x) in [0;getWidth()[
 		           forall(y) in [0;getHeight()[
@@ -45,14 +47,14 @@ public class ScreenContract extends ScreenDecorator {
 		for(int i = 0; i<w; i++) {
 			for(int j = 0; j<h; j++) {
 				if(getCellNature(i, j) != CellNature.EMP) {
-					throw new PostconditionError("Les cases ne sont pas vides à l'initialisation");
+					throw new PostConditionError("Les cases ne sont pas vides à l'initialisation");
 				}
 			}
 		}
 	}
 	
 	
-	public void dig(int x, int y) {
+	public void dig(int x, int y) throws PostConditionError, PreConditionError {
 		ScreenService atPre = null;
 		try {
 			atPre = (ScreenService) super.clone();
@@ -62,13 +64,13 @@ public class ScreenContract extends ScreenDecorator {
 		}
 		//pre: getCellNature(x,y) = CellNature.PLT
 		if(getCellNature(x, y) != CellNature.PLT)
-			throw new PreconditionError("La cible de \"dig\" n'est pas une plateforme");
+			throw new PreConditionError("La cible de \"dig\" n'est pas une plateforme");
 		
 		super.dig(x, y);
 		
 		//post : getCellNature(x,y) = CellNature.HOL
 		if(getCellNature(x, y) != CellNature.HOL)
-			throw new PostconditionError("Le trou n'as pas été creusé");
+			throw new PostConditionError("Le trou n'as pas été creusé");
 		
 		 /*post : forall(u) in [0; getWidth()[ 
 		            forall(v) in [0;getHeight()[, 
@@ -78,14 +80,14 @@ public class ScreenContract extends ScreenDecorator {
 			for(int j = 0; j<getHeight(); j++) {
 				if(x != i || y != j) {
 					if(getCellNature(x, y) != atPre.getCellNature(x, y))
-						throw new PostconditionError("Des cases autres que la cases cibles ont été modifiés");
+						throw new PostConditionError("Des cases autres que la cases cibles ont été modifiés");
 				}
 			}
 		}
 	}
 
 
-		public void fill(int x, int y) {
+		public void fill(int x, int y) throws PostConditionError, PreConditionError {
 			ScreenService atPre = null;
 			try {
 				atPre = (ScreenService) super.clone();
@@ -95,13 +97,13 @@ public class ScreenContract extends ScreenDecorator {
 			}
 			//pre: getCellNature(x,y) = CellNature.HOL
 			if(getCellNature(x, y) != CellNature.HOL)
-				throw new PreconditionError("La cible de \"fill\" n'est pas un trou");
+				throw new PreConditionError("La cible de \"fill\" n'est pas un trou");
 			
 			super.fill(x, y);
 			
 			//post : getCellNature(x,y) = CellNature.PLT
 			if(getCellNature(x, y) != CellNature.PLT)
-				throw new PostconditionError("Le trou n'as pas été rebouché");
+				throw new PostConditionError("Le trou n'as pas été rebouché");
 			
 			 /*post : forall(u) in [0; getWidth()[ 
 			            forall(v) in [0;getHeight()[, 
@@ -111,7 +113,7 @@ public class ScreenContract extends ScreenDecorator {
 				for(int j = 0; j<getHeight(); j++) {
 					if(x != i || y != j) {
 						if(getCellNature(x, y) != atPre.getCellNature(x, y))
-							throw new PostconditionError("Des cases autres que la cases cibles ont été modifiés");
+							throw new PostConditionError("Des cases autres que la cases cibles ont été modifiés");
 					}
 				}
 			}

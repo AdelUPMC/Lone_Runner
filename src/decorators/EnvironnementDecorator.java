@@ -32,7 +32,7 @@ public abstract class EnvironnementDecorator implements EnvironnementService {
 		return delegate.getCellContent(x, y);
 	}
 
-	public void init(int h, int w) {
+	public void init(int h, int w) throws PostConditionError, PreConditionError {
 		delegate.init(h, w);
 	}
 
@@ -44,11 +44,11 @@ public abstract class EnvironnementDecorator implements EnvironnementService {
 		delegate.init(s);
 	}
 
-	public void dig(int x, int y) {
+	public void dig(int x, int y) throws PostConditionError, PreConditionError {
 		delegate.dig(x, y);
 	}
 
-	public void fill(int x, int y) {
+	public void fill(int x, int y) throws PostConditionError, PreConditionError {
 		delegate.fill(x, y);
 	}
 	

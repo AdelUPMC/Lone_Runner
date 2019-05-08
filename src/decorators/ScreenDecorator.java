@@ -1,5 +1,7 @@
 package decorators;
 
+import Exceptions.PostConditionError;
+import Exceptions.PreConditionError;
 import services.CellNature;
 import services.ScreenService;
 
@@ -21,15 +23,15 @@ public abstract class ScreenDecorator implements ScreenService{
 		return delegate.getCellNature(x, y);
 	}
 	
-	public void init(int h, int w) {
+	public void init(int h, int w) throws PostConditionError, PreConditionError {
 		delegate.init(h, w);
 	}
 
-	public void dig(int x, int y) {
+	public void dig(int x, int y) throws PostConditionError, PreConditionError {
 		delegate.dig(x, y);
 	}
 	
-	public void fill(int x, int y) {
+	public void fill(int x, int y) throws PostConditionError, PreConditionError {
 		delegate.fill(x, y);
 	}
 

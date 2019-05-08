@@ -1,5 +1,8 @@
 package services;
 
+import Exceptions.PostConditionError;
+import Exceptions.PreConditionError;
+
 public interface ScreenService {
 	
 	public int getHeight();
@@ -18,8 +21,10 @@ public interface ScreenService {
 	* post : forall(x) in [0;getWidth()[
 	* 			 forall(y) in [0;getHeight()[
 	* 				getCellNature(x,y) = CellNature.EMP
+	 * @throws PostConditionError 
+	 * @throws PreConditionError 
 	 */
-	public void init(int h, int w);
+	public void init(int h, int w) throws PostConditionError, PreConditionError;
 	
 	/**
 	* pre: getCellNature(x,y) = CellNature.PLT
@@ -28,8 +33,10 @@ public interface ScreenService {
 	* 			forall(y) in [0;getHeight()[, 
 	* 				if(x!= u || y != v) 
 	* 					getCellNature(x,y) = getCellNature(x,y)@pre
+	 * @throws PostConditionError 
+	 * @throws PreConditionError 
 	 */
-	public void dig(int x, int y);
+	public void dig(int x, int y) throws PostConditionError, PreConditionError;
 	
 	/**
 	* pre: getCellNature(x,y) = CellNature.HOL
@@ -38,7 +45,9 @@ public interface ScreenService {
 	* 			forall(v) in [0;getHeight()[, 
 						if(x!= u || y != v) 
 		* 					getCellNature(u,v) = getCellNature(u,v)@pre
+	 * @throws PostConditionError 
+	 * @throws PreConditionError 
 	 */
-	public void fill(int x, int y);
+	public void fill(int x, int y) throws PostConditionError, PreConditionError;
 	
 }

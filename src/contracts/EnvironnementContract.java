@@ -1,4 +1,4 @@
-package contract;
+package contracts;
 
 import Exceptions.InvariantError;
 import Exceptions.PostConditionError;
