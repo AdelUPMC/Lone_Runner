@@ -3,11 +3,18 @@ package decorators;
 import services.CellNature;
 import services.ScreenService;
 
-public abstract class ScreenDecorators implements ScreenService{
+public abstract class ScreenDecorator implements ScreenService{
 	private final ScreenService delegate;
 
-	public ScreenDecorators (ScreenService delegate) {
+	public ScreenDecorator (ScreenService delegate) {
 		this.delegate = delegate;
+	}
+	
+	public int getHeight() {
+		return delegate.getHeight();
+	}
+	public int getWidth() {
+		return delegate.getWidth();
 	}
 	
 	public CellNature getCellNature(int x, int y) {
