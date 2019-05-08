@@ -6,8 +6,13 @@ import services.GuardService;
 import services.Move;
 import services.ScreenService;
 
-public class GuardDecorator implements GuardService {
+public abstract class GuardDecorator implements GuardService {
 	private GuardService delegate;
+
+	public GuardDecorator(GuardService delegate) {
+		super();
+		this.delegate = delegate;
+	}
 
 	public int getHeight() {
 		return delegate.getHeight();

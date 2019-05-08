@@ -4,8 +4,13 @@ import services.CharacterService;
 import services.EnvironnementService;
 import services.ScreenService;
 
-public class CharacterDecorator implements CharacterService {
+public abstract class CharacterDecorator implements CharacterService {
 	private CharacterService delegate;
+
+	public CharacterDecorator(CharacterService delegate) {
+		super();
+		this.delegate = delegate;
+	}
 
 	public int getHeight() {
 		return delegate.getHeight();

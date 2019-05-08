@@ -1,5 +1,8 @@
 package decorators;
 
+import Exceptions.InvariantError;
+import Exceptions.PostConditionError;
+import Exceptions.PreConditionError;
 import impl.Collection_Set;
 import services.CellNature;
 import services.EditableScreen;
@@ -7,6 +10,11 @@ import services.EnvironnementService;
 
 public abstract class EnvironnementDecorator implements EnvironnementService {
 	private EnvironnementService delegate;
+
+	public EnvironnementDecorator(EnvironnementService delegate) {
+		super();
+		this.delegate = delegate;
+	}
 
 	public int getHeight() {
 		return delegate.getHeight();
@@ -20,7 +28,7 @@ public abstract class EnvironnementDecorator implements EnvironnementService {
 		return delegate.getCellNature(x, y);
 	}
 
-	public Collection_Set getCellContent(int x, int y) {
+	public Collection_Set getCellContent(int x, int y) throws PreConditionError {
 		return delegate.getCellContent(x, y);
 	}
 
@@ -32,7 +40,7 @@ public abstract class EnvironnementDecorator implements EnvironnementService {
 		return delegate.getScreen();
 	}
 
-	public void init(EditableScreen s) {
+	public void init(EditableScreen s) throws InvariantError, PostConditionError, PreConditionError {
 		delegate.init(s);
 	}
 
