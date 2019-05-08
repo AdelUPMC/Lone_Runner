@@ -170,6 +170,7 @@ public class GuardContract extends GuardDecorator{
 				e.printStackTrace();
 			}
 		super.ClimbLeft();
+		checkInvariant();
 		
 		/*\post : if(getEnv().getCellNature(getWidth()@pre -1, getHeight()@pre+1)==CellNature.MTL ||
 		  				getEnv().getCellNature(getWidth()@pre -1, getHeight()@pre+1)==CellNature.PLT) {
@@ -226,7 +227,6 @@ public class GuardContract extends GuardDecorator{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		checkInvariant();
 	}
 
 	public void ClimbRight() {
@@ -243,6 +243,7 @@ public class GuardContract extends GuardDecorator{
 			}
 		
 		super.ClimbRight();
+		checkInvariant();
 		
 		/*\post : if(getEnv().getCellNature(getWidth()@pre +1, getHeight()@pre+1)==CellNature.MTL ||
 		  				getEnv().getCellNature(getWidth()@pre +1, getHeight()@pre+1)==CellNature.PLT) {
@@ -299,7 +300,6 @@ public class GuardContract extends GuardDecorator{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		checkInvariant();
 	}
 
 	public int getHeight() {
