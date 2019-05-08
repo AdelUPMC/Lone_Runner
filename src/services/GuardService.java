@@ -21,7 +21,7 @@ public interface GuardService extends CharacterService{
 	 * 			&& (getEnv().getCellNature(getWidth(), getHeight()-1) != CellNature.MTL
 	 * 				|| getEnv().getCellNature(getWidth(), getHeight()-1) != CellNature.PLT
 	 * 				|| (\exists C Character \in getEnv().getCellContent(getWidth() , getHeight()-1)))
-	 *			&& Math.abs(getTarget().getHeight().getHeight()) < Math.abs(getTarget().getWidth()-getWidth()|)) {
+	 *			&& Math.abs(getTarget().getHeight() - getHeight()) < Math.abs(getTarget().getWidth()-getWidth()|)) {
 	 *			getBehaviour() == Move.Down;
 	 *
 	 *
@@ -34,7 +34,7 @@ public interface GuardService extends CharacterService{
 	 *			|| (getEnv().getCellNature(getWidth(), getHeight()-1) == CellNature.HOL 
 	 *				&& (\exists C Character \in getEnv().getCellContent(getWidth() , getHeight()-1)))
 	 * 			&& getWidth() > getTarget().getWidth()
-	 *			&& Math.abs(getTarget().getHeight().getHeight()) > Math.abs(getTarget().getWidth()-getWidth()|)) {
+	 *			&& Math.abs(getTarget().getHeight() - getHeight()) > Math.abs(getTarget().getWidth()-getWidth()|)) {
 	 *			getBehaviour() == Move.Left;
 	 *
 	 *
@@ -47,7 +47,7 @@ public interface GuardService extends CharacterService{
 	 *			|| (getEnv().getCellNature(getWidth(), getHeight()-1) == CellNature.HOL 
 	 *				&& (\exists C Character \in getEnv().getCellContent(getWidth() , getHeight()-1)))
 	 * 			&& getWidth() < getTarget().getWidth()
-	 *			&& Math.abs(getTarget().getHeight().getHeight()) > Math.abs(getTarget().getWidth()-getWidth())) {
+	 *			&& Math.abs(getTarget().getHeight() - getHeight()) > Math.abs(getTarget().getWidth()-getWidth())) {
 	 *			getBehaviour() == Move.Right;
 	 *
 	 *
@@ -60,7 +60,7 @@ public interface GuardService extends CharacterService{
 	 *			|| (getEnv().getCellNature(getWidth(), getHeight()-1) == CellNature.HOL 
 	 *				&& (\exists C Character \in getEnv().getCellContent(getWidth() , getHeight()-1)))
 	 * 			&& getWidth() == getTarget().getWidth()
-	 *			&& Math.abs(getTarget().getHeight().getHeight()) > Math.abs(getTarget().getWidth()-getWidth())) {
+	 *			&& Math.abs(getTarget().getHeight()- getHeight()) > Math.abs(getTarget().getWidth()-getWidth())) {
 	 *			getBehaviour() == Move.Neutral;
 	 */
 	
@@ -80,8 +80,8 @@ public interface GuardService extends CharacterService{
 	 * 				getWidth() == getWidth()@pre;
 	 * 				getHeight()==getHeight()@pre;
 	 * 			}
-	 * \post : if(getWidth()@pre != 0 && (getEnv().getCellNature(getWidth()@pre -1, getHeight()@pre+1)!= CellNature.MTL||
-	 * 									getEnv().getCellNature(getWidth()@pre -1, getHeight()@pre+1)!= CellNature.PLT)
+	 * \post : if(getWidth()@pre != 0 && !(getEnv().getCellNature(getWidth()@pre -1, getHeight()@pre+1)== CellNature.MTL||
+	 * 									getEnv().getCellNature(getWidth()@pre -1, getHeight()@pre+1)== CellNature.PLT)
 	 * 									&& !(\exists C Character \in getEnv().getCellContent(getWidth()@pre -1 , getHeight()@pre+1) {
 	 * 				getWidth() == getWidth()@pre-1;
 	 * 				getHeight() == getHeight@pre+1;
