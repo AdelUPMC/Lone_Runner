@@ -18,11 +18,11 @@ public interface EditableScreen extends ScreenService{
 	public void setNature(int x, int y, CellNature c);
 	
 	/**
-	 *  \inv:  isPlayable()==true
-	 * 	\inv:forall(x) in [0; getWidth()[ 
-	 * 			forall(y) in [0;getHeight()[
-	 * 				getCellNature(x,y)!=CellNature.HOL
-	 * \inv:forall(x) in [0; getWidth()[
-	 * 	 	getCellNature(x,0)=CellNature.MTL
+	 *  \inv:  isPlayable()==
+	 * 			\forall(x) in [0; getWidth()[ 
+	 * 				getCellNature(x,0)=CellNature.MTL
+	 * 				\forall(y) in [0;getHeight()[
+	 * 					getCellNature(x,y)!=CellNature.HOL
+	 * 	 	
 	 */
 }

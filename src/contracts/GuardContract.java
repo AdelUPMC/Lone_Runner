@@ -12,7 +12,6 @@ import services.Move;
 import services.ScreenService;
 
 public class GuardContract extends GuardDecorator{
-
 	public GuardContract(GuardService delegate) {
 		super(delegate);
 	}
