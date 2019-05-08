@@ -6,9 +6,9 @@ import Exceptions.InvariantError;
 import Exceptions.PostConditionError;
 import Exceptions.PreConditionError;
 import decorators.EditableScreenDecorators;
-import javafx.util.Pair;
 import services.CellNature;
 import services.EditableScreen;
+import utils.Pair;
 
 public class EditableScreenContract  extends EditableScreenDecorators{
 

@@ -6,9 +6,9 @@ import java.util.Map;
 import Exceptions.PostConditionError;
 import Exceptions.PreConditionError;
 import decorators.ScreenDecorator;
-import javafx.util.Pair;
 import services.CellNature;
 import services.ScreenService;
+import utils.Pair;
 
 public class ScreenContract extends ScreenDecorator {
 
