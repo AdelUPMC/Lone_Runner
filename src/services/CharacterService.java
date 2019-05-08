@@ -164,6 +164,8 @@ public interface CharacterService {
 	 *						getHeight() == getHeight()@pre-1;
 	 *				}
 	 *  
+	 *  
+	 *  
 	 */
 	public void goDown();
 	
