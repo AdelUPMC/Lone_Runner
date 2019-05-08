@@ -163,7 +163,7 @@ public class CharacterContract extends CharacterDecorator {
 		super.goUp();
 		this.checkInvariant();
 		
-		
+		//
 		
 		//post1:
 		if(getWidth() != getWidth_atPre)throw new PostConditionError("goUp() post1: getWidth() == getWidth_atPre");
