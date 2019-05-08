@@ -78,6 +78,7 @@ public class EnvironnementContract extends EnvironnementDecorator {
 		
 		return this.getCellContent(x, y);
 	}
+	//
 
 	
 
