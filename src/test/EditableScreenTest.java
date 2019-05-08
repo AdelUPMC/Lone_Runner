@@ -1,12 +1,7 @@
 package test;
 
 import services.CellNature;
-import services.CharacterService;
-import services.EditableScreen;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.Before;
 import org.junit.Test;
 
 import Exceptions.InvariantError;
@@ -37,7 +32,7 @@ public class EditableScreenTest {
 	}
 	
 	@Test
-	private void testCellNature() throws PostConditionError, PreConditionError, InvariantError {
+	public void testCellNature() throws PostConditionError, PreConditionError, InvariantError {
 		edtScreen.init(50, 60);
 		for(int i = 0; i<edtScreen.getWidth();i++) {
 			edtScreen.setNature(i, 0, CellNature.MTL);
@@ -67,7 +62,7 @@ public class EditableScreenTest {
 	}
 	
 	@Test
-	private void testDig() throws PostConditionError, PreConditionError, InvariantError {
+	public void testDig() throws PostConditionError, PreConditionError, InvariantError {
 		edtScreen.init(50, 60);
 		for(int i = 0; i<edtScreen.getWidth();i++) {
 			edtScreen.setNature(i, 0, CellNature.MTL);
@@ -94,7 +89,7 @@ public class EditableScreenTest {
 	}
 	
 	@Test
-	private void testFill() throws PostConditionError, PreConditionError, InvariantError {
+	public void testFill() throws PostConditionError, PreConditionError, InvariantError {
 		edtScreen.init(50, 60);
 		for(int i = 0; i<edtScreen.getWidth();i++) {
 			edtScreen.setNature(i, 0, CellNature.MTL);

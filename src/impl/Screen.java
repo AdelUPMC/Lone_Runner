@@ -1,7 +1,6 @@
 package impl;
 
 import java.util.HashMap;
-
 import Exceptions.PostConditionError;
 import Exceptions.PreConditionError;
 import services.CellNature;
@@ -13,46 +12,47 @@ public class Screen implements ScreenService {
 	private HashMap<Pair<Integer,Integer>,CellNature> screen;
 	private int width;
 	private int height;
-	public Screen(int width, int height) {
-		this.width=width;
-		this.height=height;
+	public Screen() {
 		screen= new HashMap<Pair<Integer,Integer>,CellNature>();
 	}
 
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return height;
 	}
 
 	@Override
 	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return width;
 	}
 
+	public HashMap<Pair<Integer,Integer>,CellNature> getScreen(){
+		return screen;
+	}
+	
 	@Override
 	public CellNature getCellNature(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+		Pair<Integer,Integer> p= new Pair<Integer,Integer>(x,y);
+		return getScreen().get(p);
 	}
 
 	@Override
 	public void init(int h, int w) throws PostConditionError, PreConditionError {
-		// TODO Auto-generated method stub
-
+		this.width=w;
+		this.height=h;
 	}
 
 	@Override
 	public void dig(int x, int y) throws PostConditionError, PreConditionError {
-		// TODO Auto-generated method stub
+		Pair<Integer,Integer> p= new Pair<Integer,Integer>(x,y);
+		getScreen().put(p,CellNature.HOL);
 
 	}
 
 	@Override
 	public void fill(int x, int y) throws PostConditionError, PreConditionError {
-		// TODO Auto-generated method stub
-
+		Pair<Integer,Integer> p= new Pair<Integer,Integer>(x,y);
+		getScreen().put(p,CellNature.PLT);
 	}
 
 }
