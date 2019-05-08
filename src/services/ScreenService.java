@@ -32,8 +32,8 @@ public interface ScreenService {
 	public void dig(int x, int y);
 	
 	/**
-	* pre: getCellNature(x,y) = CellNature.PLT
-	* post : getCellNature(x,y) = CellNature.HOL
+	* pre: getCellNature(x,y) = CellNature.HOL
+	* post : getCellNature(x,y) = CellNature.PLT
 	* post : forall(u) in [0; getWidth()[ 
 	* 			forall(v) in [0;getHeight()[, 
 						if(x!= u || y != v) 
