@@ -31,7 +31,7 @@ public interface EnvironnementService extends ScreenService{
 			
 			\inv: \forall x in [0;getWidth()[ 
 					\forall y in [0;getHeight()[
-						if(getCellNature(x,y)==MTL||getCellNature(x,y)==PLR){
+						if(getCellNature(x,y)==MTL||getCellNature(x,y)==CellNature.PLR){
 							getCellContent(x,y).getCharacters().size()==0;
 							getCellContent(x,y).getItems().size()==0;
 						}
@@ -39,7 +39,7 @@ public interface EnvironnementService extends ScreenService{
 					\forall y in [0;getHeight()[
 						\forall item in getCellContent(x,y).getItems()
 							if(item.getNature() ==ItemType.Treasure){
-								getCellNature(x,y) == EMP && (getCellNature(x,y-1)==PLT||getCellNature(x,y-1)==MTL);
+								getCellNature(x,y) == EMP && (getCellNature(x,y-1)==CellNature.PLT||getCellNature(x,y-1)==CellNature.MTL);
 							}
 					
 		 */
