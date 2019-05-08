@@ -1,5 +1,8 @@
 package decorators;
 
+import Exceptions.InvariantError;
+import Exceptions.PostConditionError;
+import Exceptions.PreConditionError;
 import services.CharacterService;
 import services.EnvironnementService;
 import services.GuardService;
@@ -15,7 +18,7 @@ public abstract class GuardDecorator implements GuardService {
 	}
 
 	public int getHeight() {
-		return delegate.getHeight();
+		return delegate.getHeigth();
 	}
 
 	public int getId() {
@@ -38,7 +41,7 @@ public abstract class GuardDecorator implements GuardService {
 		return delegate.getTarget();
 	}
 
-	public void init(ScreenService s, int x, int y) {
+	public void init(ScreenService s, int x, int y) throws PreConditionError, InvariantError {
 		delegate.init(s, x, y);
 	}
 
@@ -50,7 +53,7 @@ public abstract class GuardDecorator implements GuardService {
 		delegate.ClimbLeft();
 	}
 
-	public void goLeft() {
+	public void goLeft() throws InvariantError, PreConditionError, PostConditionError {
 		delegate.goLeft();
 	}
 

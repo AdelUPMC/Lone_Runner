@@ -1,5 +1,8 @@
 package decorators;
 
+import Exceptions.InvariantError;
+import Exceptions.PostConditionError;
+import Exceptions.PreConditionError;
 import services.CharacterService;
 import services.EnvironnementService;
 import services.ScreenService;
@@ -12,8 +15,8 @@ public abstract class CharacterDecorator implements CharacterService {
 		this.delegate = delegate;
 	}
 
-	public int getHeight() {
-		return delegate.getHeight();
+	public int getHeigth() {
+		return delegate.getHeigth();
 	}
 
 	public int getWidth() {
@@ -24,11 +27,11 @@ public abstract class CharacterDecorator implements CharacterService {
 		return delegate.getEnv();
 	}
 
-	public void init(ScreenService s, int x, int y) {
+	public void init(ScreenService s, int x, int y) throws PreConditionError, InvariantError {
 		delegate.init(s, x, y);
 	}
 
-	public void goLeft() {
+	public void goLeft() throws InvariantError, PreConditionError, PostConditionError {
 		delegate.goLeft();
 	}
 

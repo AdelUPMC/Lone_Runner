@@ -14,8 +14,8 @@ import services.EnvironnementService;
 
 public class EnvironnementContract extends EnvironnementDecorator {
 
-	public EnvironnementContract(EnvironnementService env) {
-		super(env);
+	public EnvironnementContract(EnvironnementService delegate) {
+		super(delegate);
 	}
 
 	//invariants
