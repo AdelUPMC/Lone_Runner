@@ -158,6 +158,7 @@ public class GuardContract extends GuardDecorator{
 	
 	
 	public void ClimbLeft() {
+		checkInvariant();
 		int x = getWidth();
 		int y = getHeight();
 		//pre : getEnv().getCellNature(getWidth(), getHeight()) == CellNature.HOL
@@ -225,9 +226,11 @@ public class GuardContract extends GuardDecorator{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		checkInvariant();
 	}
 
 	public void ClimbRight() {
+		checkInvariant();
 		int x = getWidth();
 		int y = getHeight();
 		//pre : getEnv().getCellNature(getWidth(), getHeight()) == CellNature.HOL
@@ -296,10 +299,10 @@ public class GuardContract extends GuardDecorator{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		checkInvariant();
 	}
 
 	public int getHeight() {
-		
 		return super.getHeight();
 	}
 
