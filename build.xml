@@ -38,6 +38,13 @@
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="xtend-gen">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.xtend"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
     </target>
     <target name="clean">
         <delete dir="bin"/>
@@ -49,6 +56,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
+            <src path="xtend-gen"/>
             <classpath refid="Lone_Runner.classpath"/>
         </javac>
     </target>

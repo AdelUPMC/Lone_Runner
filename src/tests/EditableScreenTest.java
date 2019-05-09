@@ -1,17 +1,47 @@
 package tests;
 
 import services.CellNature;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import utils.Pair;
+
+import static org.junit.Assert.assertTrue;
+
+import java.util.HashMap;
+
 import org.junit.Test;
 
 import Exceptions.InvariantError;
 import Exceptions.PostConditionError;
 import Exceptions.PreConditionError;
 import contracts.EditableScreenContract;
+import impl.EditableScreenImpl;
 
 public class EditableScreenTest {
-	private EditableScreenContract edtScreen;
+	private EditableScreenImpl e= new EditableScreenImpl();
+	private EditableScreenContract edtScreen= new EditableScreenContract(e);
 	
+	@Test
+	public void testsetNaturePos() throws PostConditionError, PreConditionError, InvariantError {
+		edtScreen.init(50,50);
+		edtScreen.getDelegate().setNature(25, 12, CellNature.PLT);
+		assertTrue(edtScreen.getCellNature(25, 12).equals(CellNature.PLT));
+	}
+	
+	@Test
+	public void testsetNaturePostPos() throws PostConditionError, PreConditionError, InvariantError {
+		edtScreen.init(50,50);
+		HashMap<Pair<Integer,Integer>,CellNature> capture= new HashMap<Pair<Integer,Integer>,CellNature>(((EditableScreenImpl)edtScreen.getDelegate()).getScreen());
+		edtScreen.getDelegate().setNature(25, 12, CellNature.PLT);
+		
+		for(int x=0;x<edtScreen.getWidth();x++) {
+			for(int y=0;y<edtScreen.getHeight();y++) {
+				if((x!=25)||(y!=12)) {
+					Pair<Integer,Integer> p1= new Pair<Integer,Integer>(x,y);
+					assertTrue(capture.get(p1).equals(((EditableScreenImpl)edtScreen.getDelegate()).getScreen().get(p1)));
+				}
+			}
+		}
+	}
+	/*
 	@Test
 	public void testPre() throws PostConditionError, PreConditionError, InvariantError {
 		edtScreen.init(50, 60);
@@ -88,6 +118,7 @@ public class EditableScreenTest {
 		
 	}
 	
+	
 	@Test
 	public void testFill() throws PostConditionError, PreConditionError, InvariantError {
 		edtScreen.init(50, 60);
@@ -115,5 +146,6 @@ public class EditableScreenTest {
 		assertEquals(CellNature.EMP, edtScreen.getCellNature(5, 2));
 
 	}
+	*/
 	
 }

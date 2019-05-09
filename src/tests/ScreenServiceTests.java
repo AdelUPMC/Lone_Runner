@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import Exceptions.PostConditionError;
 import Exceptions.PreConditionError;
+import contracts.ScreenContract;
 import impl.Screen;
 import services.CellNature;
 import utils.Pair;
@@ -14,7 +15,8 @@ import utils.Pair;
 public class ScreenServiceTests {
 
 	//objectif:préconditions de init
-	private Screen s= new Screen();
+	private Screen s1= new Screen();
+	private ScreenContract s= new ScreenContract(s1);
 	
 	@Test
 	public void testInitPrePos()  {
@@ -49,7 +51,7 @@ public class ScreenServiceTests {
 			for(int x=0;x<s.getWidth();x++) {
 				for(int y=0;y<s.getHeight();y++) {
 					Pair<Integer,Integer> p=new Pair<Integer,Integer>(x,y);
-					assertTrue(s.getScreen().get(p) == CellNature.EMP);
+					assertTrue(((Screen) s.getDelegate()).getScreen().get(p) == CellNature.EMP);
 				}
 			}
 		} catch (PostConditionError | PreConditionError e) {

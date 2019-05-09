@@ -5,6 +5,7 @@ import Exceptions.PostConditionError;
 import Exceptions.PreConditionError;
 import services.CellNature;
 import services.EditableScreen;
+import utils.Pair;
 
 public abstract class EditableScreenDecorators implements EditableScreen{
 	private final EditableScreen delegate;
@@ -45,6 +46,12 @@ public abstract class EditableScreenDecorators implements EditableScreen{
 	public void fill(int x, int y) throws PostConditionError, PreConditionError {
 		delegate.fill(x, y);
 	}
+
+
+	public EditableScreen getDelegate() {
+		return delegate;
+	}
+	
 
 	
 
